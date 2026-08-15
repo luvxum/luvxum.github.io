@@ -29,13 +29,70 @@
   }, { root: scroller, threshold: 0.35 });
   sections.forEach(s => observer.observe(s));
 
-  // scroll-down hint: visible on the first page only
+  // scroll hints: down-arrow (right, mobile+desktop) and up-arrow (left, desktop only)
   const scrollHint = document.getElementById("scrollHint");
+  const scrollHintUp = document.getElementById("scrollHintUp");
+  const isMobile = () => window.matchMedia("(max-width: 640px)").matches;
+
+  const lastShake = new WeakMap();
+  function shakeHint(hint) {
+    const img = hint.querySelector("img");
+    const now = Date.now();
+    if (now - (lastShake.get(hint) || 0) < 500) return;
+    lastShake.set(hint, now);
+    img.classList.remove("shake");
+    void img.offsetWidth; // restart the animation
+    img.classList.add("shake");
+  }
+
   scrollHint.addEventListener("click", () => {
-    sections[1].scrollIntoView({ behavior: "smooth" });
+    shakeHint(scrollHint);
+    if (isMobile()) {
+      sections[1].scrollIntoView({ behavior: "smooth" });
+    } else {
+      const current = Math.round(scroller.scrollTop / scroller.clientHeight);
+      const next = sections[current + 1];
+      if (next) next.scrollIntoView({ behavior: "smooth" });
+    }
   });
+  scrollHintUp.addEventListener("click", () => {
+    shakeHint(scrollHintUp);
+    const current = Math.round(scroller.scrollTop / scroller.clientHeight);
+    const prev = sections[current - 1];
+    if (prev) prev.scrollIntoView({ behavior: "smooth" });
+  });
+
   scroller.addEventListener("scroll", () => {
-    scrollHint.classList.toggle("hidden", scroller.scrollTop > 40);
+    if (isMobile()) {
+      scrollHint.classList.toggle("hidden", scroller.scrollTop > 40);
+    } else {
+      const atEnd = scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 20;
+      scrollHint.classList.toggle("hidden", atEnd);
+      scrollHintUp.classList.toggle("hidden", scroller.scrollTop <= 40);
+    }
+  }, { passive: true });
+
+  // only shake on actual user-driven scrolling (wheel/touch), not the
+  // automatic snap settle that follows — down shakes the right arrow,
+  // up shakes the left arrow
+  function maybeShake(direction) {
+    if (direction > 0 && !scrollHint.classList.contains("hidden")) shakeHint(scrollHint);
+    else if (direction < 0 && !scrollHintUp.classList.contains("hidden")) shakeHint(scrollHintUp);
+  }
+  scroller.addEventListener("wheel", (e) => {
+    maybeShake(e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0);
+  }, { passive: true });
+
+  let lastTouchY = null;
+  scroller.addEventListener("touchstart", (e) => {
+    lastTouchY = e.touches[0].clientY;
+  }, { passive: true });
+  scroller.addEventListener("touchmove", (e) => {
+    if (lastTouchY === null) return;
+    const y = e.touches[0].clientY;
+    const dy = lastTouchY - y; // finger moving up means scrolling down
+    lastTouchY = y;
+    maybeShake(dy > 0 ? 1 : dy < 0 ? -1 : 0);
   }, { passive: true });
 
   // loader: wait for the first couple of images (rest load lazily as you scroll)

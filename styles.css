@@ -77,9 +77,9 @@ html,body{
   transform:none;
 }
 
-/* ---------- Scroll hint ---------- */
+/* ---------- Scroll hints ---------- */
 .scroll-hint{
-  position:fixed; right:clamp(10px, 4vw, 44px); top:50%;
+  position:fixed; top:46%;
   transform:translateY(-50%);
   z-index:50;
   border:none; background:none; padding:0;
@@ -89,29 +89,63 @@ html,body{
 }
 .scroll-hint img{
   display:block;
-  height:clamp(80px, 13vh, 130px);
+  height:clamp(240px, 39vh, 390px);
   width:auto;
 }
 .scroll-hint.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+
+.scroll-hint-down{ right:clamp(40px, 14vw, 200px); }
+.scroll-hint-down img{ transform: scaleX(-1); }
+.scroll-hint-down img.shake{ animation: scrollHintShakeDown .5s ease-in-out; }
+
+.scroll-hint-up{ left:clamp(40px, 14vw, 200px); }
+.scroll-hint-up img{ transform: scaleY(-1); }
+.scroll-hint-up img.shake{ animation: scrollHintShakeUp .5s ease-in-out; }
 
 @keyframes scrollHintBob{
   0%, 100% { transform: translateY(-50%); }
   50%      { transform: translateY(calc(-50% + 10px)); }
 }
 
+@keyframes scrollHintShakeDown{
+  0%, 100% { transform: scaleX(-1) translateX(0) rotate(0deg); }
+  20%      { transform: scaleX(-1) translateX(-14px) rotate(-3deg); }
+  40%      { transform: scaleX(-1) translateX(11px) rotate(2deg); }
+  60%      { transform: scaleX(-1) translateX(-8px) rotate(-1deg); }
+  80%      { transform: scaleX(-1) translateX(5px) rotate(1deg); }
+}
+
+@keyframes scrollHintShakeUp{
+  0%, 100% { transform: scaleY(-1) translateX(0) rotate(0deg); }
+  20%      { transform: scaleY(-1) translateX(-14px) rotate(-3deg); }
+  40%      { transform: scaleY(-1) translateX(11px) rotate(2deg); }
+  60%      { transform: scaleY(-1) translateX(-8px) rotate(-1deg); }
+  80%      { transform: scaleY(-1) translateX(5px) rotate(1deg); }
+}
+
 /* on mobile the page is width-constrained, leaving empty space below it —
-   put the hint there instead of floating over the right side */
+   put the down hint there instead of floating over the right side;
+   the up hint is desktop-only */
 @media (max-width:640px){
-  .scroll-hint{
+  .scroll-hint-up{ display:none; }
+  .scroll-hint-down{
     right:auto; left:50%; top:auto; bottom:10px;
     transform:translateX(-50%);
     animation: scrollHintBobMobile 2.4s ease-in-out infinite;
   }
-  .scroll-hint img{
-    height:clamp(46px, 8vh, 70px);
+  .scroll-hint-down img{
+    height:clamp(80px, 14vh, 125px);
+    transform: none;
   }
   @keyframes scrollHintBobMobile{
     0%, 100% { transform: translateX(-50%) translateY(0); }
     50%      { transform: translateX(-50%) translateY(7px); }
+  }
+  @keyframes scrollHintShakeDown{
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    20%      { transform: translateX(-14px) rotate(-3deg); }
+    40%      { transform: translateX(11px) rotate(2deg); }
+    60%      { transform: translateX(-8px) rotate(-1deg); }
+    80%      { transform: translateX(5px) rotate(1deg); }
   }
 }
