@@ -1,0 +1,117 @@
+:root{
+  --pink: #ef67a7;
+  --pink-deep: #d94f8f;
+  --ink: #2a2226;
+}
+
+*{ box-sizing:border-box; }
+
+html,body{
+  margin:0;
+  height:100%;
+  background:#fff;
+  color:var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+}
+
+/* ---------- Loader ---------- */
+.loader{
+  position:fixed; inset:0; z-index:100;
+  background:#fff;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+.loader.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+
+/* ---------- Scroller ---------- */
+.scroller{
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--pink) #ffe4f0;
+}
+
+.scroller::-webkit-scrollbar{
+  width:12px;
+}
+.scroller::-webkit-scrollbar-track{
+  background:#ffe4f0;
+}
+.scroller::-webkit-scrollbar-thumb{
+  background:var(--pink);
+  border-radius:10px;
+  border:3px solid #ffe4f0;
+}
+.scroller::-webkit-scrollbar-thumb:hover{
+  background:var(--pink-deep);
+}
+
+.page{
+  height:100vh;
+  width:100%;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: clamp(10px, 3vw, 40px);
+}
+
+.page img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  display:block;
+  -webkit-user-drag:none;
+  user-select:none;
+  opacity:0;
+  transform: translateY(28px) scale(.97);
+  transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.page.in-view img{
+  opacity:1;
+  transform:none;
+}
+
+/* ---------- Scroll hint ---------- */
+.scroll-hint{
+  position:fixed; right:clamp(10px, 4vw, 44px); top:50%;
+  transform:translateY(-50%);
+  z-index:50;
+  border:none; background:none; padding:0;
+  cursor:pointer;
+  animation: scrollHintBob 2.4s ease-in-out infinite;
+  transition: opacity .4s ease, visibility .4s ease;
+}
+.scroll-hint img{
+  display:block;
+  height:clamp(80px, 13vh, 130px);
+  width:auto;
+}
+.scroll-hint.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+
+@keyframes scrollHintBob{
+  0%, 100% { transform: translateY(-50%); }
+  50%      { transform: translateY(calc(-50% + 10px)); }
+}
+
+/* on mobile the page is width-constrained, leaving empty space below it —
+   put the hint there instead of floating over the right side */
+@media (max-width:640px){
+  .scroll-hint{
+    right:auto; left:50%; top:auto; bottom:10px;
+    transform:translateX(-50%);
+    animation: scrollHintBobMobile 2.4s ease-in-out infinite;
+  }
+  .scroll-hint img{
+    height:clamp(46px, 8vh, 70px);
+  }
+  @keyframes scrollHintBobMobile{
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(7px); }
+  }
+}
