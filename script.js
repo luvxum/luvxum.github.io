@@ -1,5 +1,9 @@
 (() => {
-  const TOTAL = 12;
+  const isMobile = () => window.matchMedia("(max-width: 640px)").matches;
+  const MOBILE_LAYOUT = isMobile();
+  const TOTAL = MOBILE_LAYOUT ? 13 : 12;
+  const PAGE_DIR = MOBILE_LAYOUT ? "assets/pages-mobile" : "assets/pages";
+
   const pad = n => String(n).padStart(2, "0");
   const scroller = document.getElementById("scroller");
   const loader = document.getElementById("loader");
@@ -11,7 +15,7 @@
     section.className = "page";
 
     const img = document.createElement("img");
-    img.src = `assets/pages/page-${pad(i)}.jpg`;
+    img.src = `${PAGE_DIR}/page-${pad(i)}.jpg`;
     img.alt = `Portfolio – strana ${i}`;
     img.draggable = false;
     if (i > 2) img.loading = "lazy";
@@ -32,7 +36,6 @@
   // scroll hints: down-arrow (right, mobile+desktop) and up-arrow (left, desktop only)
   const scrollHint = document.getElementById("scrollHint");
   const scrollHintUp = document.getElementById("scrollHintUp");
-  const isMobile = () => window.matchMedia("(max-width: 640px)").matches;
 
   const lastShake = new WeakMap();
   function shakeHint(hint) {
