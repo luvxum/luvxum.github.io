@@ -1,26 +1,193 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>luvxum — portfolio</title>
-<meta name="description" content="Portfolio Natálie Svozilové — luvxum">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio Natalie Svozilové: grafický design, fotografie, malba a vizuální experimenty.">
+  <title>Natalie Svozilová — portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="vtělení/random/ja s malbou poletujici s pozadim spicatym.png" fetchpriority="high">
 </head>
 <body>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Domů">Natálka Svozilová</a>
+    <nav class="main-nav" aria-label="Hlavní navigace">
+      <a href="#prace">práce</a>
+      <button type="button" class="about-link" id="about-link">o mně</button>
+    </nav>
+  </header>
 
-<div class="loader" id="loader"></div>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-stars" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span><span>✦</span><span>✧</span></div>
+      <div class="hero-copy">
+        <p class="hero-greeting">Ahojky!!! Já jsem</p>
+        <h1>Luvxum</h1>
+        <a class="text-link" href="#prace" id="paint-link">...a občas maluju obrázky <img class="text-link-arrow" src="stránka/sipka nova.png" alt=""></a>
+      </div>
+      <figure class="hero-image">
+        <img src="vtělení/random/ja s malbou poletujici s pozadim spicatym.png" alt="Portrét autorky ze série Vtělení" fetchpriority="high">
+      </figure>
+    </section>
 
-<main class="scroller" id="scroller"></main>
+    <section class="work-section" id="prace">
+      <div class="section-heading">
+        <div>
+          <h2>moje obrázky</h2>
+        </div>
+      </div>
 
-<button class="scroll-hint scroll-hint-down" id="scrollHint" aria-label="Scrollovat dolů">
-  <img src="assets/scroll-arrow.png" alt="">
-</button>
+      <div class="paintings-list" id="paintings-list">
+        <div class="painting-group">
+          <template class="gallery-images">
+            <img src="optimized/mmm i looove to pee so much!!!/air-drying.full.jpg" data-full="mmm i looove to pee so much!!!/air-drying.full.PNG" data-caption="air-drying" alt="air-drying">
+            <img src="optimized/mmm i looove to pee so much!!!/pls dont forget the laundry detergent.jpg" data-full="mmm i looove to pee so much!!!/pls dont forget the laundry detergent.PNG" data-caption="pls dont forget to use the laundry detergent" alt="pls dont forget to use the laundry detergent">
+            <img src="optimized/mmm i looove to pee so much!!!/wet socks.jpg" data-full="mmm i looove to pee so much!!!/wet socks.PNG" data-caption="wet socks" alt="wet socks">
+            <img src="optimized/mmm i looove to pee so much!!!/zlaty dest my.jpg" data-full="mmm i looove to pee so much!!!/zlaty dest my.jpg" data-caption="zlaty dest my" alt="zlaty dest my">
+            <img src="optimized/mmm i looove to pee so much!!!/zlaty dest drzeni spodar.jpg" data-full="mmm i looove to pee so much!!!/zlaty dest drzeni spodar.jpg" data-caption="zlaty dest drzeni spodar" alt="zlaty dest drzeni spodar">
+            <img src="optimized/mmm i looove to pee so much!!!/zlaty dest spodary.jpg" data-full="mmm i looove to pee so much!!!/zlaty dest spodary.jpg" data-caption="zlaty dest spodary" alt="zlaty dest spodary">
+            <img src="optimized/vtělení/na zachode.jpg" data-full="vtělení/na zachode.JPEG" alt="Vtělení 01">
+            <img src="optimized/vtělení/v posteli.jpg" data-full="vtělení/v posteli.JPEG" alt="Vtělení 02">
+            <img src="optimized/ovocíčka/ovocicka spolu.jpg" data-full="ovocíčka/ovocicka spolu.jpeg" alt="Ovocíčka 01">
+            <img src="optimized/ovocíčka/bananek.jpg" data-full="ovocíčka/bananek.jpeg" alt="Ovocíčka 02">
+            <img src="optimized/ovocíčka/jablicko.jpg" data-full="ovocíčka/jablicko.jpeg" alt="Ovocíčka 03">
+            <img src="optimized/ovocíčka/banan a pomeranc.jpg" data-full="ovocíčka/banan a pomeranc.png" alt="Ovocíčka 04">
+          </template>
+        </div>
+      </div>
+    </section>
 
-<button class="scroll-hint scroll-hint-up hidden" id="scrollHintUp" aria-label="Scrollovat nahoru">
-  <img src="assets/scroll-arrow.png" alt="">
-</button>
+    <section class="work-section" id="dalsi-prace">
+      <div class="section-heading">
+        <div>
+          <h2>další práce</h2>
+        </div>
+      </div>
 
-<script src="script.js"></script>
+      <div class="gallery" id="gallery">
+        <article class="project-card project-card--folder" data-category="design" data-title="Pinďourci" data-meta="pop art / 2023">
+          <button class="card-image" type="button" aria-label="Otevřít složku Pinďourci">
+            <img src="optimized/pinďourci/pinďourci/dilda9.jpg" data-full="pinďourci/pinďourci/dilda9.jpg" alt="Pinďourci" loading="lazy" decoding="async">
+            <span class="view-mark">↗</span>
+          </button>
+          <div class="card-meta"><h3>Pinďourci</h3></div>
+          <template class="gallery-images">
+            <img src="optimized/pinďourci/pinďourci/dilda9.jpg" data-full="pinďourci/pinďourci/dilda9.jpg" alt="Pinďourci 01">
+            <img src="optimized/pinďourci/pinďourci/dilda1.jpg" data-full="pinďourci/pinďourci/dilda1.png" alt="Pinďourci 02">
+            <img src="optimized/pinďourci/pinďourci/dilda2.jpg" data-full="pinďourci/pinďourci/dilda2.png" alt="Pinďourci 03">
+            <img src="optimized/pinďourci/pinďourci/dilda3.jpg" data-full="pinďourci/pinďourci/dilda3.jpg" alt="Pinďourci 04">
+            <img src="optimized/pinďourci/pinďourci/dilda4.jpg" data-full="pinďourci/pinďourci/dilda4.jpg" alt="Pinďourci 05">
+            <img src="optimized/pinďourci/pinďourci/dilda5.jpg" data-full="pinďourci/pinďourci/dilda5.jpg" alt="Pinďourci 06">
+            <img src="optimized/pinďourci/pinďourci/dilda6.jpg" data-full="pinďourci/pinďourci/dilda6.jpg" alt="Pinďourci 07">
+            <img src="optimized/pinďourci/pinďourci/dilda8.jpg" data-full="pinďourci/pinďourci/dilda8.jpg" alt="Pinďourci 08">
+            <img src="optimized/pinďourci/pinďourci/dilda7.jpg" data-full="pinďourci/pinďourci/dilda7.jpg" alt="Pinďourci 09">
+            <img src="optimized/pinďourci/pinďourci/dildo10oblicej.jpg" data-full="pinďourci/pinďourci/dildo10oblicej.jpg" alt="Pinďourci 10">
+            <img src="optimized/pinďourci/pinďourci/didla11.jpg" data-full="pinďourci/pinďourci/didla11.jpg" alt="Pinďourci 11">
+            <img src="optimized/pinďourci/pinďourci/dilda12.jpg" data-full="pinďourci/pinďourci/dilda12.jpg" alt="Pinďourci 12">
+            <img src="optimized/pinďourci/pinďourci/dilda13.jpg" data-full="pinďourci/pinďourci/dilda13.jpg" alt="Pinďourci 13">
+            <img src="optimized/pinďourci/pinďourci/dilda14.jpg" data-full="pinďourci/pinďourci/dilda14.jpg" alt="Pinďourci 14">
+            <img src="optimized/pinďourci/pinďourci/dilda15.jpg" data-full="pinďourci/pinďourci/dilda15.jpg" alt="Pinďourci 15">
+            <img src="optimized/pinďourci/pinďourci/duha.jpg" data-full="pinďourci/pinďourci/duha.jpeg" alt="Pinďourci 16">
+            <img src="optimized/pinďourci/pinďourci/duha slimak.jpg" data-full="pinďourci/pinďourci/duha slimak.png" alt="Pinďourci 17">
+          </template>
+        </article>
+        <article class="project-card project-card--folder" data-category="design" data-title="Klauni" data-meta="ilustrace / 2023">
+          <button class="card-image" type="button" aria-label="Otevřít složku Klauni">
+            <img src="optimized/klauni/první.jpg" data-full="klauni/první.png" alt="Klauni" loading="lazy" decoding="async">
+            <span class="view-mark">↗</span>
+          </button>
+          <div class="card-meta"><h3>Klauni</h3></div>
+          <template class="gallery-images">
+            <img src="optimized/klauni/první.jpg" data-full="klauni/první.png" alt="Klauni 01">
+            <img src="optimized/klauni/na houpačce.jpg" data-full="klauni/na houpačce.png" alt="Klauni 02">
+            <img src="optimized/klauni/na vodičce.jpg" data-full="klauni/na vodičce.png" alt="Klauni 03">
+            <img src="optimized/klauni/přátelství.jpg" data-full="klauni/přátelství.png" alt="Klauni 04">
+            <img src="optimized/klauni/přemýšlí.jpg" data-full="klauni/přemýšlí.png" alt="Klauni 05">
+            <img src="optimized/klauni/s hvězdičkou.jpg" data-full="klauni/s hvězdičkou.png" alt="Klauni 06">
+            <img src="optimized/klauni/s jahůdkou.jpg" data-full="klauni/s jahůdkou.png" alt="Klauni 07">
+          </template>
+        </article>
+        <article class="project-card project-card--folder" data-category="foto" data-title="Tělesnost" data-meta="fotografie / 2023">
+          <button class="card-image" type="button" aria-label="Otevřít složku Tělesnost">
+            <img src="optimized/fotografie/tělesnost/tělesnost 1.jpg" data-full="fotografie/tělesnost/tělesnost 1.JPG" alt="Tělesnost" loading="lazy" decoding="async">
+            <span class="view-mark">↗</span>
+          </button>
+          <div class="card-meta"><h3>Tělesnost</h3></div>
+          <template class="gallery-images">
+            <img src="optimized/fotografie/tělesnost/tělesnost 1.jpg" data-full="fotografie/tělesnost/tělesnost 1.JPG" alt="Tělesnost 01">
+            <img src="optimized/fotografie/tělesnost/tělesnost 2.jpg" data-full="fotografie/tělesnost/tělesnost 2.JPG" alt="Tělesnost 02">
+            <img src="optimized/fotografie/tělesnost/tělesnost 3.jpg" data-full="fotografie/tělesnost/tělesnost 3.JPG" alt="Tělesnost 03">
+            <img src="optimized/fotografie/tělesnost/tělesnost 4.jpg" data-full="fotografie/tělesnost/tělesnost 4.JPG" alt="Tělesnost 04">
+            <img src="optimized/fotografie/tělesnost/tělesnost 5.jpg" data-full="fotografie/tělesnost/tělesnost 5.JPG" alt="Tělesnost 05">
+            <img src="optimized/fotografie/tělesnost/tělesnost 6.jpg" data-full="fotografie/tělesnost/tělesnost 6.JPG" alt="Tělesnost 06">
+            <img src="optimized/fotografie/tělesnost/tělesnost 7.jpg" data-full="fotografie/tělesnost/tělesnost 7.JPG" alt="Tělesnost 07">
+          </template>
+        </article>
+        <article class="project-card project-card--folder" data-category="foto" data-title="Zlatý řez" data-meta="fotografie / 2023">
+          <button class="card-image" type="button" aria-label="Otevřít složku Zlatý řez">
+            <img src="optimized/fotografie/zlatý řez/1.jpg" data-full="fotografie/zlatý řez/1.JPG" alt="Zlatý řez" loading="lazy" decoding="async">
+            <span class="view-mark">↗</span>
+          </button>
+          <div class="card-meta"><h3>Zlatý řez</h3></div>
+          <template class="gallery-images">
+            <img src="optimized/fotografie/zlatý řez/1.jpg" data-full="fotografie/zlatý řez/1.JPG" alt="Zlatý řez 01">
+            <img src="optimized/fotografie/zlatý řez/3x.jpg" data-full="fotografie/zlatý řez/3x.jpeg" alt="Zlatý řez 02">
+            <img src="optimized/fotografie/zlatý řez/2.jpg" data-full="fotografie/zlatý řez/2.jpeg" alt="Zlatý řez 03">
+            <img src="optimized/fotografie/zlatý řez/1x.jpg" data-full="fotografie/zlatý řez/1x.JPG" alt="Zlatý řez 04">
+            <img src="optimized/fotografie/zlatý řez/3.jpg" data-full="fotografie/zlatý řez/3.jpeg" alt="Zlatý řez 05">
+            <img src="optimized/fotografie/zlatý řez/2x.jpg" data-full="fotografie/zlatý řez/2x.jpeg" alt="Zlatý řez 06">
+          </template>
+        </article></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="kontakt">
+    <a href="mailto:luvxum@gmail.com">luvxum@gmail.com</a>
+    <span>✦</span>
+    <a href="https://instagram.com/luvxum" target="_blank" rel="noopener">@luvxum</a>
+    <span>✦</span>
+    <a href="tel:+420721062053">721 062 053</a>
+  </footer>
+
+  <dialog class="about-popup" id="about-popup">
+    <div class="firework" id="about-firework" aria-hidden="true"></div>
+    <div class="about-popup-window">
+      <button class="about-popup-close" type="button" aria-label="Zavřít"></button>
+      <div class="about-popup-content">
+        <p>Jmenuju se Natálka a studuju na Akademii výtvarných umění v ateliéru Nová média 2. Věnuji se převážně olejové malbě a lehké digitální grafice. Chci tvořit roztomilý a něžný svět plný lásky a růžové :3</p>
+        <div class="about-popup-contacts">
+          <a href="mailto:luvxum@gmail.com">luvxum@gmail.com</a>
+          <span>✦</span>
+          <a href="https://instagram.com/luvxum" target="_blank" rel="noopener">@luvxum</a>
+          <span>✦</span>
+          <a href="tel:+420721062053">721 062 053</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="folder-view" id="folder-view">
+    <button class="folder-view-close" type="button" aria-label="Zavřít složku"></button>
+    <div class="folder-view-scroll">
+      <button class="folder-view-back" id="folder-view-back" type="button" hidden>‹ zpět</button>
+      <h3 class="folder-view-title" id="folder-view-title"></h3>
+      <div class="folder-grid" id="folder-grid"></div>
+    </div>
+  </dialog>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox-close" type="button" aria-label="Zavřít náhled"></button>
+    <button class="lightbox-prev" type="button" aria-label="Předchozí fotka"></button>
+    <button class="lightbox-next" type="button" aria-label="Další fotka"></button>
+    <img id="lightbox-image" src="" alt="">
+    <div class="lightbox-caption"><strong id="lightbox-title"></strong><span id="lightbox-meta"></span></div>
+  </dialog>
+  <div class="wave-scrollbar" aria-hidden="true"><div class="wave-scrollbar-thumb" id="wave-thumb"></div></div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
