@@ -44,7 +44,7 @@ const setLightboxImage = (image) => {
   };
   lightboxImage.src = fullSrc;
   lightboxImage.alt = image.alt;
-  lightboxMeta.textContent = image.alt;
+  lightboxMeta.textContent = (image.dataset && image.dataset.caption) || '';
 };
 
 const showGalleryImage = (index) => {
