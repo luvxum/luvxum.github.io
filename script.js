@@ -136,10 +136,21 @@ const startStarAnimation = () => {
   });
 };
 
-document.querySelector('.hero').addEventListener('pointermove', (event) => {
+let starBounds = [...stars].map((star) => star.getBoundingClientRect());
+const updateStarBounds = () => {
+  starBounds = [...stars].map((star) => star.getBoundingClientRect());
+};
+window.addEventListener('resize', updateStarBounds);
+
+let pointerFrame = null;
+let lastPointerEvent = null;
+
+const processPointerMove = () => {
+  pointerFrame = null;
+  const event = lastPointerEvent;
   stars.forEach((star, index) => {
     const isHeroImage = index === heroImageIndex;
-    const bounds = star.getBoundingClientRect();
+    const bounds = starBounds[index];
     const distanceX = event.clientX - (bounds.left + bounds.width / 2);
     const distanceY = event.clientY - (bounds.top + bounds.height / 2);
     const distance = Math.hypot(distanceX, distanceY);
@@ -167,6 +178,12 @@ document.querySelector('.hero').addEventListener('pointermove', (event) => {
     }
     startStarAnimation();
   });
+};
+
+document.querySelector('.hero').addEventListener('pointermove', (event) => {
+  lastPointerEvent = event;
+  if (pointerFrame) return;
+  pointerFrame = requestAnimationFrame(processPointerMove);
 });
 
 const buildSubfolderTile = (sub, index, onOpen) => {
