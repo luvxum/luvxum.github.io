@@ -36,15 +36,31 @@ cards.forEach((card) => {
   cardImage.appendChild(badge);
 });
 
+let lightboxPreload = null;
+
 const setLightboxImage = (image) => {
-  const fullSrc = (image.dataset && image.dataset.full) || image.src;
-  lightboxImage.onerror = () => {
-    lightboxImage.onerror = null;
-    lightboxImage.src = image.src;
-  };
-  lightboxImage.src = fullSrc;
+  if (lightboxPreload) {
+    lightboxPreload.onload = null;
+    lightboxPreload.onerror = null;
+    lightboxPreload = null;
+  }
+
+  lightboxImage.src = image.src;
   lightboxImage.alt = image.alt;
   lightboxMeta.textContent = (image.dataset && image.dataset.caption) || '';
+
+  const fullSrc = image.dataset && image.dataset.full;
+  if (fullSrc && fullSrc !== image.src) {
+    const preload = new Image();
+    preload.onload = () => {
+      if (lightboxPreload === preload) lightboxImage.src = fullSrc;
+    };
+    preload.onerror = () => {
+      if (lightboxPreload === preload) lightboxPreload = null;
+    };
+    lightboxPreload = preload;
+    preload.src = fullSrc;
+  }
 };
 
 const showGalleryImage = (index) => {
