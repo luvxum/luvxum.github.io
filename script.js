@@ -327,7 +327,10 @@ const updateWaveThumb = () => {
   const viewportHeight = window.innerHeight;
   const thumbHeight = Math.max(50, (viewportHeight / scrollHeight) * viewportHeight);
   const maxScroll = scrollHeight - viewportHeight;
-  const scrollRatio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  const scrollY = window.scrollY;
+  let scrollRatio = maxScroll > 0 ? scrollY / maxScroll : 0;
+  if (scrollY + viewportHeight >= scrollHeight - 2) scrollRatio = 1;
+  scrollRatio = Math.min(1, Math.max(0, scrollRatio));
   waveThumb.style.height = `${thumbHeight}px`;
   waveThumb.style.top = `${scrollRatio * (viewportHeight - thumbHeight)}px`;
 };
