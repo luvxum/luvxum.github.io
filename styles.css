@@ -18,7 +18,7 @@
 html { scroll-behavior: smooth; scrollbar-width: none; }
 ::-webkit-scrollbar { display: none; }
 .wave-scrollbar { height: 100vh; pointer-events: none; position: fixed; right: 2px; top: 0; width: 28px; z-index: 999; }
-.wave-scrollbar-thumb { background: transparent url("stránka/posuvnik.png") top/100% auto no-repeat; cursor: grab; pointer-events: auto; position: absolute; transition: top .05s linear; width: 100%; }
+.wave-scrollbar-thumb { background: transparent url("stránka/posuvnik.png") top/100% 100% no-repeat; cursor: grab; pointer-events: auto; position: absolute; transition: top .05s linear; width: 100%; }
 .wave-scrollbar-thumb.dragging { cursor: grabbing; transition: none; }
 body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
 body:has(dialog[open]) { overflow: hidden; }
