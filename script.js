@@ -52,11 +52,20 @@ const showGalleryImage = (index) => {
   setLightboxImage(galleryImages[galleryIndex]);
 };
 
+let galleryTransitionHandler = null;
+
 const animateGalleryImage = (index) => {
   galleryIndex = (index + galleryImages.length) % galleryImages.length;
   const image = galleryImages[galleryIndex];
+  if (galleryTransitionHandler) {
+    lightboxImage.removeEventListener('transitionend', galleryTransitionHandler);
+    galleryTransitionHandler = null;
+  }
+  lightboxImage.classList.remove('img-exit');
+  void lightboxImage.offsetWidth;
   lightboxImage.classList.add('img-exit');
-  lightboxImage.addEventListener('transitionend', () => {
+  galleryTransitionHandler = () => {
+    galleryTransitionHandler = null;
     setLightboxImage(image);
     lightboxImage.classList.add('img-enter-instant');
     lightboxImage.classList.remove('img-exit');
@@ -65,7 +74,8 @@ const animateGalleryImage = (index) => {
         lightboxImage.classList.remove('img-enter-instant');
       });
     });
-  }, { once: true });
+  };
+  lightboxImage.addEventListener('transitionend', galleryTransitionHandler, { once: true });
 };
 
 const openLightboxAt = (index) => {
