@@ -195,7 +195,6 @@ const renderFolderLevel = (title, images, subfolders) => {
   folderViewBack.hidden = folderStack.length === 0;
   folderGrid.innerHTML = '';
   folderGrid.classList.toggle('folder-grid--grid3', title === 'Zlatý řez');
-  folderGrid.classList.toggle('folder-grid--pindourci', title === 'Pinďourci');
 
   let tileIndex = 0;
 
