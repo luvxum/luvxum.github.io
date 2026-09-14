@@ -359,10 +359,19 @@ const updateWaveThumb = () => {
   waveThumb.style.height = `${thumbHeight}px`;
   waveThumb.style.top = `${scrollRatio * (viewportHeight - thumbHeight)}px`;
 };
+let waveThumbFrame = null;
+const scheduleWaveThumbUpdate = () => {
+  if (waveThumbFrame) return;
+  waveThumbFrame = requestAnimationFrame(() => {
+    waveThumbFrame = null;
+    updateWaveThumb();
+  });
+};
+
 if (waveThumb) {
   updateWaveThumb();
-  window.addEventListener('scroll', updateWaveThumb, { passive: true });
-  window.addEventListener('resize', updateWaveThumb);
+  window.addEventListener('scroll', scheduleWaveThumbUpdate, { passive: true });
+  window.addEventListener('resize', scheduleWaveThumbUpdate);
 
   let dragStartY = 0;
   let dragStartScroll = 0;
