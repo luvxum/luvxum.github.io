@@ -322,10 +322,19 @@ const closeFolderView = () => {
 };
 
 const waveThumb = document.querySelector('#wave-thumb');
+let waveThumbRatio = 3289 / 824;
+const waveThumbImg = new Image();
+waveThumbImg.onload = () => {
+  waveThumbRatio = waveThumbImg.naturalHeight / waveThumbImg.naturalWidth;
+  updateWaveThumb();
+};
+waveThumbImg.src = 'stránka/posuvnik.png';
+
 const updateWaveThumb = () => {
   const scrollHeight = document.documentElement.scrollHeight;
   const viewportHeight = window.innerHeight;
-  const thumbHeight = Math.max(50, (viewportHeight / scrollHeight) * viewportHeight);
+  const trackWidth = waveThumb.clientWidth || waveThumb.offsetWidth || 28;
+  const thumbHeight = Math.min(viewportHeight, trackWidth * waveThumbRatio);
   const maxScroll = scrollHeight - viewportHeight;
   const scrollY = window.scrollY;
   let scrollRatio = maxScroll > 0 ? scrollY / maxScroll : 0;
